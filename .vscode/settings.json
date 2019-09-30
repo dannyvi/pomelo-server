@@ -1,4 +1,12 @@
 {
     "python.venvPath": "~/.virtualenvs/pomelo",
-    "python.pythonPath": "/Users/yudan/.virtualenvs/pomelo/bin/python"
+    "python.pythonPath": "/Users/yudan/.virtualenvs/pomelo/bin/python",
+    "sqltools.connections": [
+        {
+            "askForPassword": true,
+            "database": "./pomelo_server/db.sqlite3",
+            "dialect": "SQLite",
+            "name": "sqlite"
+        }
+    ]
 }
