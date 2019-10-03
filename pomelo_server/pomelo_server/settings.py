@@ -48,10 +48,12 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'guardian',
-    'authenticate',
+    'pomelo',
+    'pomelo.authjwt',
+    'pomelo.buyer',
 ]
 
-AUTH_USER_MODEL = 'authenticate.BaseUser'
+AUTH_USER_MODEL = 'authjwt.BaseUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -184,6 +186,11 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
     'SLIDING_TOKEN_LIFETIME': timedelta(days=1), #minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+}
+
+
+POMELO = {
+    
 }
 
 CORS_ORIGIN_ALLOW_ALL = True

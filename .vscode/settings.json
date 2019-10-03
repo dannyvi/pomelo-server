@@ -8,5 +8,7 @@
             "dialect": "SQLite",
             "name": "sqlite"
         }
-    ]
+    ],
+    "editor.defaultFormatter": "vscode.python",
+    "python.formatting.autopep8Path": "/Users/yudan/.local/share/virtualenvs/pomelo/bin/autopep8"
 }
