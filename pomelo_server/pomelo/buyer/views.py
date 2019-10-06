@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
+from pomelo.buyer.models import Profile
+from pomelo.buyer.serializers import ProfileSerializer
+from rest_framework import permissions
 
-# Create your views here.
+
+class ProfileViewset(ModelViewSet):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+    permission_classes = [permissions.AllowAny]

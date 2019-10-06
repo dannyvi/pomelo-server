@@ -8,11 +8,11 @@ from pomelo.authjwt.views import get_username
 from .views import BaseUserViewset
 
 router = DefaultRouter(trailing_slash=False)
-router.register('buyer', BaseUserViewset)
+router.register('user', BaseUserViewset)
 
 urlpatterns = [
     path('token', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh', TokenRefreshView.as_view(), name='token_refresh'),
     path('get_username', get_username),
-    path('', include((router.urls, 'buyer_manage'), namespace='buyer')),
+    path('', include((router.urls, 'user_manage'), namespace='user')),
 ]

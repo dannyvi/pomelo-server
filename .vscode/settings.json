@@ -1,5 +1,4 @@
 {
-    "python.venvPath": "~/.virtualenvs/pomelo",
     "python.pythonPath": "/Users/yudan/.virtualenvs/pomelo/bin/python",
     "sqltools.connections": [
         {
@@ -9,6 +8,26 @@
             "name": "sqlite"
         }
     ],
-    "editor.defaultFormatter": "vscode.python",
-    "python.formatting.autopep8Path": "/Users/yudan/.local/share/virtualenvs/pomelo/bin/autopep8"
+    "editor.defaultFormatter": "ms-python.python",
+    "python.formatting.autopep8Path": "",
+    "python.formatting.provider": "yapf",
+    "python.formatting.yapfArgs": [
+        "--style",
+        "{based_on_style: chromium, indent_width: 4}"
+    ],
+    "editor.rulers": [
+        80,120
+    ],
+    "python.linting.pylintArgs": [
+        "--max-line-length",
+        "120"
+    ],
+    "python.formatting.autopep8Args": [
+        "--max-line-length",
+        "120"
+    ],
+    "python.linting.flake8Args": [
+        "--max-line-length",
+        "120"
+    ]
 }

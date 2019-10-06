@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from pomelo import authjwt
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('pomelo.authjwt.urls')),
+    path('buyer/', include('pomelo.buyer.urls')),
 ]

@@ -12,7 +12,7 @@ USER_SETTINGS = getattr(settings, 'POMELO', None)
 DEFAULTS = {
     'SIGNING_KEY': settings.SECRET_KEY,
     'VERIFYING_KEY': None,
-    'BUYER_MODEL': 'buyer.Buyer',
+    'BUYER_PROFILE': 'buyer.Profile',
 
 }
 

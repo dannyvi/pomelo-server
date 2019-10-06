@@ -32,6 +32,7 @@ class BaseUserSerializer(serializers.ModelSerializer):
                         'username': {'required': False}}
 
     def create(self, validated_data):
+        """create BaseUser instance."""
         email = validated_data.pop("email", None)
         phone = validated_data.pop("phone", None)
         if email is None and phone is None:
