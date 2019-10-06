@@ -4,8 +4,8 @@ from django.utils.translation import gettext as _
 
 
 class BaseUser(AbstractUser):
-    phone = models.CharField(verbose_name=_('Phone Number'), null=True, blank=True, default=None, unique=True,
-                             max_length=20)
+    phone = models.CharField(verbose_name=_('Phone Number'), null=True, blank=True, default=None,
+                             unique=True, max_length=20)
     email = models.EmailField(_('email address'), null=True, unique=True, blank=True)
     REQUIRED_FIELDS = ['email']
 

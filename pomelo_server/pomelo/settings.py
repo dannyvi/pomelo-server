@@ -13,11 +13,11 @@ DEFAULTS = {
     'SIGNING_KEY': settings.SECRET_KEY,
     'VERIFYING_KEY': None,
     'BUYER_PROFILE': 'buyer.Profile',
-
+    'DEFAULT_ROUTER': 'pomelo.routers.MinorRouter'
 }
 
 IMPORT_STRINGS = (
-    'AUTH_TOKEN_CLASSES',
+    'DEFAULT_ROUTER',
 )
 
 REMOVED_SETTINGS = (

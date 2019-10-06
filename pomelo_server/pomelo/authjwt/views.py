@@ -9,9 +9,10 @@ from rest_framework.viewsets import ModelViewSet
 from .serializers import BaseUserSerializer
 # from rest_framework.permissions import IsAdminUser
 from rest_framework import permissions
-from rest_framework.decorators import action
+from rest_framework.decorators import action, permission_classes
 
 from pomelo.serializers import PasswordSerializer
+from pomelo.permissions import IsUserInstance
 from rest_framework import status
 
 UserModel = get_user_model()
@@ -37,7 +38,21 @@ class BaseUserViewset(ModelViewSet):
     """
     queryset = UserModel.objects.all()
     serializer_class = BaseUserSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated, IsUserInstance]
+
+    def get_permissions(self):
+        """
+        Allow anyone to sign up.
+        AdminUser can query user list.
+        Owner can edit itself.
+        """
+        if self.action == 'create':
+            permission_classes = [permissions.AllowAny]
+        elif self.action == 'list':
+            permission_classes = [permissions.IsAuthenticated, permissions.IsAdminUser]
+        else:
+            permission_classes = [permissions.IsAuthenticated, IsUserInstance]
+        return [permission() for permission in permission_classes]
 
     @action(detail=True, methods=['post'])
     def set_password(self, request, pk=None):
