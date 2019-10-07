@@ -9,8 +9,7 @@ from rest_framework.viewsets import ModelViewSet
 from .serializers import BaseUserSerializer
 # from rest_framework.permissions import IsAdminUser
 from rest_framework import permissions
-from rest_framework.decorators import action, permission_classes
-
+from rest_framework.decorators import action
 from pomelo.serializers import PasswordSerializer
 from pomelo.permissions import IsUserInstance
 from rest_framework import status
