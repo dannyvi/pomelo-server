@@ -1,5 +1,3 @@
-#from datetime import timedelta
-
 from django.conf import settings
 from django.test.signals import setting_changed
 from django.utils.translation import ugettext_lazy as _
@@ -12,7 +10,9 @@ USER_SETTINGS = getattr(settings, 'POMELO', None)
 DEFAULTS = {
     'SIGNING_KEY': settings.SECRET_KEY,
     'VERIFYING_KEY': None,
-    'BUYER_PROFILE': 'buyer.Profile',
+    'PROFILE_MODEL': 'buyer.Profile',
+    'IMAGE_MODEL': 'generic.Image',
+
     'DEFAULT_ROUTER': 'pomelo.routers.MinorRouter'
 }
 
@@ -38,16 +38,16 @@ class APISettings(_APISettings):  # pragma: no cover
         return user_settings
 
 
-api_settings = APISettings(USER_SETTINGS, DEFAULTS, IMPORT_STRINGS)
+pomelo_settings = APISettings(USER_SETTINGS, DEFAULTS, IMPORT_STRINGS)
 
 
 def reload_api_settings(*args, **kwargs):  # pragma: no cover
-    global api_settings
+    global pomelo_settings
 
     setting, value = kwargs['setting'], kwargs['value']
 
     if setting == 'POMELO':
-        api_settings = APISettings(value, DEFAULTS, IMPORT_STRINGS)
+        pomelo_settings = APISettings(value, DEFAULTS, IMPORT_STRINGS)
 
 
 setting_changed.connect(reload_api_settings)

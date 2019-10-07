@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'pomelo',
     'pomelo.authjwt',
     'pomelo.buyer',
+    'pomelo.generic',
 ]
 
 AUTH_USER_MODEL = 'authjwt.BaseUser'
@@ -60,13 +61,12 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
-    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'pomelo_server.urls'
+ROOT_URLCONF = 'pomelo.urls'
 
 TEMPLATES = [
     {
@@ -134,6 +134,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
@@ -156,7 +157,7 @@ REST_FRAMEWORK = {
         'django_filters.rest_framework.DjangoFilterBackend',
     ),
     'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler',
-    #'COERCE_DECIMAL_TO_STRING': True,
+
 }
 
 
@@ -190,7 +191,7 @@ SIMPLE_JWT = {
 
 
 POMELO = {
-    
+
 }
 
 CORS_ORIGIN_ALLOW_ALL = True

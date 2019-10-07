@@ -1,5 +1,5 @@
 from django.db import models
-from pomelo.settings import api_settings
+from pomelo.settings import pomelo_settings
 from django.conf import settings
 from django.utils.translation import gettext as _
 from django.contrib.auth import get_user_model
@@ -17,7 +17,7 @@ class Address(models.Model):
     mobile = models.CharField(verbose_name=_('Mobile'), null=True, blank=True, default=None, max_length=20)
     area = models.CharField(verbose_name=_('Area'), null=True, blank=True, default=None, max_length=30)
     text = models.TextField(_('Address'))
-    owner = models.ForeignKey(api_settings.BUYER_PROFILE, verbose_name=_('Owner'), related_name='addresses', blank=True,
+    owner = models.ForeignKey(pomelo_settings.PROFILE_MODEL, verbose_name=_('Owner'), related_name='addresses', blank=True,
                               null=True, default=None, on_delete=models.DO_NOTHING)
 
 
@@ -29,9 +29,8 @@ class Buyer(UserModel):
 
 class Profile(models.Model):
     owner = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    # user = models.OneToOneField(settings.AUTH_USER_MODEL, verbose_name=_('User'), on_delete=models.CASCADE)
     name = models.CharField(verbose_name=_('Name'), null=True, blank=True, default=None, max_length=40)
-    avatar = models.OneToOneField('pomelo.Picture', verbose_name=_('Avatar'), null=True, blank=True, default=None,
+    avatar = models.OneToOneField(pomelo_settings.IMAGE_MODEL, verbose_name=_('Avatar'), null=True, blank=True, default=None,
                                   on_delete=models.DO_NOTHING)
     now_addr = models.OneToOneField(Address, verbose_name=_('Current Address'), blank=True, null=True, default=None,
                                     on_delete=models.DO_NOTHING)

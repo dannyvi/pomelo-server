@@ -20,16 +20,14 @@ class MinorRouter(DefaultRouter):
             },
             name='{basename}-list',
             detail=False,
-            initkwargs={'suffix': 'List'}
-        ),
+            initkwargs={'suffix': 'List'}),
         # Dynamically generated list routes. Generated using
         # @action(detail=False) decorator on methods of the viewset.
         DynamicRoute(
             url=r'^{prefix}/{url_path}{trailing_slash}$',
             name='{basename}-{url_name}',
             detail=False,
-            initkwargs={}
-        ),
+            initkwargs={}),
         # Detail route.
         Route(
             url=r'^{prefix}/{lookup}{trailing_slash}$',
@@ -41,14 +39,16 @@ class MinorRouter(DefaultRouter):
             },
             name='{basename}-detail',
             detail=True,
-            initkwargs={'suffix': 'Instance'}
-        ),
+            initkwargs={'suffix': 'Instance'}),
         # Dynamically generated detail routes. Generated using
         # @action(detail=True) decorator on methods of the viewset.
         DynamicRoute(
             url=r'^{prefix}/{lookup}/{url_path}{trailing_slash}$',
             name='{basename}-{url_name}',
             detail=True,
-            initkwargs={}
-        ),
+            initkwargs={}),
     ]
+
+    def __init__(self, *args, **kwargs):
+        trailing_slash = kwargs.pop('trailing_slash', False)
+        super().__init__(trailing_slash=trailing_slash, *args, **kwargs)

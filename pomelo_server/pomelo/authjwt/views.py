@@ -38,7 +38,6 @@ class BaseUserViewset(ModelViewSet):
     """
     queryset = UserModel.objects.all()
     serializer_class = BaseUserSerializer
-    permission_classes = [permissions.IsAuthenticated, IsUserInstance]
 
     def get_permissions(self):
         """

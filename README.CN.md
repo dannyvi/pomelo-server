@@ -2,6 +2,8 @@
 
 开源电商平台框架。
 
+## 概述
+
 pomelo 的目标是成为一个易于扩展和复用的通用电子商务平台框架。
 后端框架基于 Django 和 Restframework。
 
@@ -28,9 +30,18 @@ pomelo 的目标是成为一个易于扩展和复用的通用电子商务平台�
 - ModelViewsets
   因为PATCH方法在某些场景不适用，所以对restframework默认的 ModelViewsets 请求方法进行了一些调整。
 
-  -
-
 - 序列化和视图功能
 
-    定制
+  -  定制
+
+## Router
+
+`/api/` 作为后端路由的入口。
+
+### v1
+
+`v1/` 提供一个基于`viewset`的基本路由视图。每一个`viewset`下属的所有具有路由功能的方法共享
+一个路径。
+
+
 
