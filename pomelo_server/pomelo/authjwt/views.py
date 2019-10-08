@@ -13,18 +13,24 @@ from rest_framework.decorators import action
 from pomelo.serializers import PasswordSerializer
 from pomelo.permissions import IsUserInstance
 from rest_framework import status
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 
 UserModel = get_user_model()
 
+test_param = openapi.Parameter('search', openapi.IN_QUERY, description=_('search username 查询用户名'), type=openapi.TYPE_STRING)
+user_response = openapi.Response(_('User infomation 用户信息'), BaseUserSerializer)
 
+# 'method' can be used to customize a single HTTP method of a view
+@swagger_auto_schema(method='get', manual_parameters=[test_param], responses={200: user_response})
 @api_view(['get'])
 def get_username(request):
-    q_str = request.GET.get('query', None)
+    q_str = request.GET.get('search', None)
     q = Q(phone=q_str) | Q(email=q_str)
     try:
         user = UserModel.objects.filter(q)[0]
-        username = user.username
-        return Response({'username': username})
+        serializer = BaseUserSerializer(user)
+        return Response(serializer.data)
     except ObjectDoesNotExist:
         raise NotFound(_(f"user not found:  {q_str} "))
     except IndexError:

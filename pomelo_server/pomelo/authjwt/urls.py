@@ -4,10 +4,10 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView
 )
 
-from pomelo.settings import pomelo_settings
+from pomelo.settings import api_settings
 from .views import BaseUserViewset, get_username
 
-RouterClass = pomelo_settings.DEFAULT_ROUTER
+RouterClass = api_settings.DEFAULT_ROUTER
 router = RouterClass()
 router.register('user', BaseUserViewset)
 

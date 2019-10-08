@@ -38,16 +38,16 @@ class APISettings(_APISettings):  # pragma: no cover
         return user_settings
 
 
-pomelo_settings = APISettings(USER_SETTINGS, DEFAULTS, IMPORT_STRINGS)
+api_settings = APISettings(USER_SETTINGS, DEFAULTS, IMPORT_STRINGS)
 
 
 def reload_api_settings(*args, **kwargs):  # pragma: no cover
-    global pomelo_settings
+    global api_settings
 
     setting, value = kwargs['setting'], kwargs['value']
 
     if setting == 'POMELO':
-        pomelo_settings = APISettings(value, DEFAULTS, IMPORT_STRINGS)
+        api_settings = APISettings(value, DEFAULTS, IMPORT_STRINGS)
 
 
 setting_changed.connect(reload_api_settings)

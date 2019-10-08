@@ -16,18 +16,20 @@
         "{based_on_style: chromium, indent_width: 4}"
     ],
     "editor.rulers": [
-        80,120
+        80,120, 160
     ],
     "python.linting.pylintArgs": [
         "--max-line-length",
-        "120"
+        "160"
     ],
     "python.formatting.autopep8Args": [
         "--max-line-length",
-        "120"
+        "160"
     ],
     "python.linting.flake8Args": [
         "--max-line-length",
-        "120"
-    ]
+        "160"
+    ],
+    "editor.formatOnType": true,
+    "editor.formatOnPaste": true
 }

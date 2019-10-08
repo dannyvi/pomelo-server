@@ -1,9 +1,9 @@
 from django.urls import path, include
-from pomelo.settings import pomelo_settings
+from pomelo.settings import api_settings
 from .views import ImageViewSet
 
 
-RouterClass = pomelo_settings.DEFAULT_ROUTER
+RouterClass = api_settings.DEFAULT_ROUTER
 router = RouterClass()
 router.register('image', ImageViewSet)
 
