@@ -18,7 +18,10 @@ from drf_yasg import openapi
 
 UserModel = get_user_model()
 
-test_param = openapi.Parameter('search', openapi.IN_QUERY, description=_('search username 查询用户名'), type=openapi.TYPE_STRING)
+test_param = openapi.Parameter('search',
+                               openapi.IN_QUERY,
+                               description=_('search username 查询用户名'),
+                               type=openapi.TYPE_STRING)
 user_response = openapi.Response(_('User infomation 用户信息'), BaseUserSerializer)
 
 # 'method' can be used to customize a single HTTP method of a view
