@@ -3,6 +3,8 @@ from pomelo.buyer.models import Profile
 from pomelo.buyer.serializers import ProfileSerializer
 from rest_framework import permissions
 from pomelo.permissions import IsOwnerOrReadOnly
+# from django.utils.decorators import method_decorator
+# from drf_yasg.utils import swagger_auto_schema
 
 
 class ProfileViewSet(ModelViewSet):

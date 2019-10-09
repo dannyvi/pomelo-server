@@ -14,14 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from django.contrib import admin
-from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
-
-from rest_framework import permissions
-from drf_yasg.views import get_schema_view
+from django.contrib import admin
+from django.urls import path, include, re_path
 from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions
+from django.conf.urls.i18n import i18n_patterns
+#from rest_framework import pagination
+#pagination.PageNumberPagination
+
 schema_view = get_schema_view(
     openapi.Info(
         title="POMELO API",
@@ -35,6 +38,7 @@ schema_view = get_schema_view(
     permission_classes=(permissions.AllowAny,),
 )
 
+
 doc_patterns = [
     re_path('^swagger(?P<format>.json|.yaml)/$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
@@ -42,19 +46,21 @@ doc_patterns = [
 ]
 
 v1_patterns = [
-    path('auth/', include('pomelo.authjwt.urls')),
+    path('auth/', include('pomelo.authjwt.urls', namespace='auth_module')),
     path('buyer/', include('pomelo.buyer.urls')),
     path('generic/', include('pomelo.generic.urls')),
 ]
 
-urlpatterns = [
+urlpatterns = []
+
+urlpatterns += i18n_patterns(
     path('api_doc/', include(doc_patterns)),
 
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     path('admin/', admin.site.urls),
     path('api/v1/', include(v1_patterns)),
-]
+)
 
 # Only works on debug mode.
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

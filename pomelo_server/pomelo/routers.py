@@ -33,8 +33,8 @@ class MinorRouter(DefaultRouter):
             url=r'^{prefix}/{lookup}{trailing_slash}$',
             mapping={
                 'get': 'retrieve',
-                'put': 'update',
-                'post': 'partial_update',
+                # 'patch': 'update',  # seems that we don't need this..
+                'put': 'partial_update',
                 'delete': 'destroy'
             },
             name='{basename}-detail',

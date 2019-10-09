@@ -18,10 +18,10 @@ def get_random_string(slen=40):
 def get_valid_username():
     username = get_random_string()
     try:
-        user = User.objects.get(username=username)
+        User.objects.get(username=username)
+        return get_valid_username()
     except ObjectDoesNotExist:
         return username
-    return get_valid_username()
 
 
 class BaseUserSerializer(serializers.ModelSerializer):
@@ -46,3 +46,11 @@ class BaseUserSerializer(serializers.ModelSerializer):
             user.set_password(password)
         user.save()
         return user
+
+
+class UserNameSerializer(serializers.ModelSerializer):
+    """query username"""
+    class Meta:
+        model = User
+        fields = ('username', )
+        read_only_fields = ('username', )
