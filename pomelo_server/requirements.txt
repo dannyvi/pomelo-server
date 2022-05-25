@@ -6,6 +6,6 @@ django-guardian==2.1.0
 djangorestframework==3.10.3
 djangorestframework-guardian==0.3.0
 djangorestframework-simplejwt==4.3.0
-PyJWT==1.7.1
+PyJWT==2.4.0
 pytz==2019.2
 sqlparse==0.3.0
